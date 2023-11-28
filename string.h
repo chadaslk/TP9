@@ -1,8 +1,13 @@
 
+#define SIZE 100
+
 class string{
   public:
-    char value_type;
+    string(); // default constructor
+    string(const string& s); //copy constructor
+    //void get_str();
 
   protected:
-    
+    char str_[SIZE];
+
 };
