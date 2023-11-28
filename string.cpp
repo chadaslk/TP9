@@ -18,8 +18,8 @@ string::string(const string& s){
   }
 }
 
-//void string::get_str(){
-//  for(int i = 0 ; i<SIZE ; i++){
-//    std::cout << str_[i] << " ";
-//  }
-//}
+void string::get_str(){
+  for(int i = 0 ; i<6 ; i++){
+    std::cout << str_[i] << " ";
+  }
+}
