@@ -1,5 +1,5 @@
 #include "string.h"
-#define SIZE 100
+#define SIZE_MAX 100
 #include <iostream>
 
 
@@ -27,13 +27,24 @@ string::string(const string& s){
 // Returns a pointer to an array that contains a null-terminated sequence of
 // characters (i.e., a C-string) representing the current value of the string object.
 char* string::c_str(){
-  char* cstr;
-  cstr = str_;
-  return cstr;
+  //char* cstr = str_;
+  return str_;
+}
+
+// implementation of size()
+int string::size(){
+  return taille_;
+}
+
+// implementation of clear()
+void string::clear(){
+  taille_ = 0;
+  str_ = new char[taille_];
+
 }
 
 void string::get_str(){
-  for(int i = 0 ; i<6 ; i++){
+  for(int i = 0 ; i<taille_ ; i++){
     std::cout << str_[i] << " ";
   }
 }

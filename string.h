@@ -1,5 +1,5 @@
 
-#define SIZE 100
+#define SIZE_MAX 100
 
 class string{
   public:
@@ -7,6 +7,8 @@ class string{
     string(const string& s); //copy constructor
     // returns a pointer to an array that contains a sequence of characters
     char* c_str();
+    int size();
+    void clear();
     void get_str();
 
 
