@@ -189,3 +189,130 @@ string string::operator+(const string& str){
   return new_string;
 }
 */
+
+/////PARTIE LISA
+
+//Destructeur
+string::~string() { //destructor OK ça marche
+  delete[] str_;
+}
+
+
+//Fonction membre capacity()
+int string::capacity() const {
+  //Retourner la capacité actuelle de la chaîne, sachant que si la chaîne a une taille <= 15 la capacité est fixée à 15,
+  //sinon elle correspond soit à la capcité réservée, soit à la taille du string
+  if (taille_>allocated_memory_){
+  return taille_;
+  }
+  else {
+      return allocated_memory_;
+    }
+    return taille_;
+}
+
+
+//Fonction membre empty()
+bool string::empty() const{
+  // Retourner TRUE (1) si la chaîne est vide, FALSE (0) sinon
+  return (taille_ == 0);
+}
+
+
+//Fonction membre reserve (int n)
+void string::reserve(int new_capacity) {
+    // Si la nouvelle capacité est inférieure ou égale à l'actuelle, ne rien faire
+    if (new_capacity <= taille_) {
+      return;
+    }
+    else {
+    // Allouer de la mémoire avec la nouvelle capacité
+    char* new_str_ = new char[new_capacity];
+    // Copier le contenu actuel dans la nouvelle mémoire
+      if (str_) {
+        for (int i=0; i<taille_ + 1; i++){
+          new_str_[i]=str_[i];
+        }
+    delete[] str_; // Libérer l'ancienne mémoire
+    str_ = new_str_;
+    allocated_memory_=new_capacity;
+        }
+    }
+}
+
+
+//Operator =
+string& string::operator=(const char* s){
+  //Affecte une chaine de caractères à l'objet
+  if (str_){
+    delete[] str_ ; //Liberer la mémoire déjà existante
+  }
+  int taille_s = 0;
+  while(s[taille_s]!='\0') taille_s++;
+  str_ = new char[taille_s];
+  for (int i=0; i<taille_s; i++){
+    str_[i]=s[i];
+  }
+  return *this;
+}
+
+
+//Operator +
+string string::operator+(const string& str){
+  //Concaténer les chaînes
+  string resultat;
+  //Allouer une nouvelle mémoire avec la somme des tailles
+  int taille_str = 0;
+  while(str.str_[taille_str]!='\0') taille_str++;
+  while(str_[taille_]!='\0') taille_++;
+  resultat.taille_ = taille_ + taille_str;
+  resultat.str_ = new char[resultat.taille_];
+  //Copier les deux chaînes dans la nouvelle mémoire
+  if (str_){
+    for (int i=0; i<taille_; i++){
+      resultat.str_[i]=str_[i];
+    }
+  }
+    if (str.str_){
+    for (int j=0; j<taille_str; j++){
+      resultat.str_[j+taille_]=str.str_[j];
+    }
+  }
+  //Ajout du caractère nul à la fin
+  resultat.str_[resultat.taille_]='\0';
+  return resultat;
+}
+
+
+//Constructor string(const char*)
+string::string(const char* s): str_(nullptr), taille_(0) {
+  //Transformer un char* en string
+  int taille_s = 0;
+  while(s[taille_s]!='\0') taille_s++;
+  taille_ = taille_s +1;
+  str_ = new char[taille_];
+  for (int i=0; i<taille_; i++){
+    str_[i]=s[i];
+  }
+}
+
+
+//Fonction membre afficher()
+void string::afficher() const {
+  //Afficher le string dans le terminal
+  if(str_) {
+    std::cout << str_ << std::endl;
+  }
+}
+
+
+//Fonction get_allocated_memory()
+int string::get_allocated_memory() const {
+  int allocated_memory_ = 15;
+  if (taille_<=15){
+    return allocated_memory_;
+  }
+  return taille_ ;
+}
+
+///// FIN PARTIE LISA
