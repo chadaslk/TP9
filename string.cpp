@@ -2,6 +2,8 @@
 #define SIZE_MAX 100
 #include <iostream>
 
+//Max size  (Clem)
+const int string::size_max = 100;
 
 //default constructor
 string::string(){
@@ -22,6 +24,25 @@ string::string(const string& s){
   }
 }
 
+// Constructor   (Clem)
+string::string(char* str) {
+    // Allouer de la mémoire pour la chaîne de caractères
+    taille_=2;
+    str_ = new char[taille_];
+    // Calcul de la longueur de la chaîne
+    int length = 0;
+    while (str[length] != '\0') {
+        ++length;
+    }
+    taille_=length;
+    if(taille_ > size_max){
+      std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+    }
+    // Copier les caractères de la chaîne C dans la nouvelle chaîne
+    for (int i = 0; i <= taille_+1; ++i) {
+        str_[i] = str[i];
+    }
+}
 
 
 // Returns a pointer to an array that contains a null-terminated sequence of
@@ -34,6 +55,7 @@ char* string::c_str(){
   return cstr_;
 }
 
+
 // implementation of size()
 int string::size(){
   return taille_;
@@ -45,6 +67,41 @@ void string::clear(){
   str_ = new char[taille_];
 
 }
+
+// Calcul de la longueur de la chaîne  (Clem)
+int string::length() const{
+  int length = 0;
+  while (str_[length] != '\0') {
+      ++length;
+  }
+  return length;
+}
+
+
+// Use numeric_limits to get the maximum value representable   (Clem)
+int string::max_size() const{
+    return size_max;
+}
+
+
+
+
+//Resize  (Clem)
+void string::resize(int new_size, char char_){
+  if(new_size > this->max_size()){
+	std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+  }
+	int string_size = this->length();
+	if (new_size>string_size){
+		for (int i=string_size; i<new_size+1 ; i++){
+			str_[i] = char_;
+    }
+  }
+	else if(new_size<string_size){
+    str_[new_size+1] = '\0';
+  }
+}
+
 
 // surcharge de l'opérateur operator=(char c){
 string& string::operator=(char c){
@@ -82,3 +139,53 @@ void string::get_str(){
     std::cout << str_[i] << " ";
   }
 }
+
+
+
+// Operator=  (Clem)
+void string::operator=(const string& str){
+  	int length = str.length();
+    if(length > size_max){
+      std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+    }
+    // si le string que l'on attribue est de plus grande taille que celui initial
+    if(taille_<length +1){
+    //  reserve(length+1);                        //////////////// A decommenter quand reserve(size_t) sera crée
+    }
+    for (int i=0; i<length+1; i++){
+      this->str_[i] = str.str_[i];
+    }
+}
+
+// Operator+ (Clem)
+string string::operator+(const string& str) {
+    string new_string(*this);  // Copier la chaîne actuelle
+    // Copier les caractères de str à la fin de new_string
+    for (int i = 0; i < str.taille_; ++i) {
+        new_string.str_[new_string.taille_ + i] = str.str_[i];
+    }
+    // Mettre à jour la taille de new_string
+    new_string.taille_ += str.taille_;
+    if(new_string.taille_ > size_max){
+      std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+    }
+    return new_string;
+}
+
+/// OU PEUT-ETRE   (Clem)
+/*
+string string::operator+(const string& str){
+  string new_string;
+  int new_size = this->length() + 1;
+  if(new_size > size_max){
+    std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+  }
+  //new_string.reserve(new_size+1);                  //////////////// A decommenter quand reserve(size_t) sera crée
+  for (int i=0; i<new_size-1; i++){
+    new_string.str_[i] = str_[i];
+  }
+  new_string.str_[new_size] = str;
+  new_string.str_[new_size+1] = '\0';
+  return new_string;
+}
+*/
