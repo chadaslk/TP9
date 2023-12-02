@@ -10,6 +10,8 @@ class string{
     int size();
     void clear();
     void get_str();
+    string& operator=(char c);
+    //string& operator+(const string& s, const char* c);
 
 
   protected:

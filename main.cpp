@@ -4,9 +4,13 @@
 int main() {
   string s;
   s.get_str();
-  s.clear();
-  s.get_str();
-  //std::cout << s.c_str();
+  //s.clear();
+  //s.get_str();
+  //s = 'b';
+
+  //s.get_str();
+  //string s1 = s + 'y';
+  //std::cout << s1.c_str();
   //string s1(s);
   //s1.get_str();
 
