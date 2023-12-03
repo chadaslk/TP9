@@ -35,7 +35,7 @@ class string{
 
     //Operators :
     //string& operator=(const char* s); //Operator=
-    //string operator+(const string&); //Operator+
+    string operator+(const string&); //Operator+
 
 
   protected:

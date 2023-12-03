@@ -261,7 +261,7 @@ void string::reserve(int new_capacity) {
 
 
 //Operator +
-/*string string::operator+(const string& str){
+string string::operator+(const string& str){
   //Concaténer les chaînes
   string resultat;
   //Allouer une nouvelle mémoire avec la somme des tailles
@@ -284,7 +284,7 @@ void string::reserve(int new_capacity) {
   //Ajout du caractère nul à la fin
   resultat.str_[resultat.taille_]='\0';
   return resultat;
-}*/
+}
 
 
 //Constructor string(const char*)

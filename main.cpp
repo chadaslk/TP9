@@ -116,7 +116,7 @@ int main() {
   std::cout << "Test égalité : " ; str_e.afficher();
   std::cout << " " << std::endl;
 
-  /*
+
   //test operator+(const string&, const string&)
   std::cout << "Test de l'operator+(const string&) : " << std::endl;
   string str_T, str_s;
@@ -127,7 +127,7 @@ int main() {
   string str_c ("A character sequence");
   std::cout << "Transformation d'une séquence de caractères en string : " ; str_c.afficher() ;
   std::cout << " " << std::endl;
-  */
+  
 
   str.~string();
 
