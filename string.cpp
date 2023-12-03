@@ -268,10 +268,10 @@ string string::operator+(const string& str){
   //Concaténer les chaînes
   string resultat;
   //Allouer une nouvelle mémoire avec la somme des tailles
+  int s = sizeof(str_);
   int taille_str = 0;
   while(str.str_[taille_str]!='\0') taille_str++;
-  while(str_[taille_]!='\0') taille_++;
-  int s = sizeof(str_);
+  while(str_[s]!='\0') taille_++;
   resultat.taille_ = s + taille_str;
   resultat.str_ = new char[resultat.taille_];
   //Copier les deux chaînes dans la nouvelle mémoire
