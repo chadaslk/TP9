@@ -136,6 +136,7 @@ string& string::operator=(char c){
   return new_string;
 }
 */
+
 string string::operator+(const char* c){
   int t = taille_ + sizeof(c) ; // taille_ du nouveau string
   char* n_str = new char [t];
@@ -177,6 +178,7 @@ string& string::operator=(const string& str){
 		return *this;
 }
 
+
 // Operator+ (Clem)
 string string::operator+(const char str){
 	string new_string;
@@ -192,6 +194,7 @@ string string::operator+(const char str){
 	new_string.str_[new_size] = '\0';
 	return new_string;
 }
+
 
 /////PARTIE LISA
 
@@ -245,7 +248,7 @@ void string::reserve(int new_capacity) {
 
 
 //Operator =
-/*string& string::operator=(const char* s){
+string& string::operator=(const char* s){
   //Affecte une chaine de caractères à l'objet
   if (str_){
     delete[] str_ ; //Liberer la mémoire déjà existante
@@ -257,34 +260,35 @@ void string::reserve(int new_capacity) {
     str_[i]=s[i];
   }
   return *this;
-}*/
+}
 
 
 //Operator +
-/*string string::operator+(const string& str){
+string string::operator+(const string& str){
   //Concaténer les chaînes
   string resultat;
   //Allouer une nouvelle mémoire avec la somme des tailles
   int taille_str = 0;
   while(str.str_[taille_str]!='\0') taille_str++;
   while(str_[taille_]!='\0') taille_++;
-  resultat.taille_ = taille_ + taille_str;
+  int s = sizeof(str_);
+  resultat.taille_ = s + taille_str;
   resultat.str_ = new char[resultat.taille_];
   //Copier les deux chaînes dans la nouvelle mémoire
   if (str_){
-    for (int i=0; i<taille_; i++){
+    for (int i=0; i<s; i++){
       resultat.str_[i]=str_[i];
     }
   }
     if (str.str_){
     for (int j=0; j<taille_str; j++){
-      resultat.str_[j+taille_]=str.str_[j];
+      resultat.str_[j+s]=str.str_[j];
     }
   }
   //Ajout du caractère nul à la fin
   resultat.str_[resultat.taille_]='\0';
   return resultat;
-}*/
+}
 
 
 //Constructor string(const char*)

@@ -81,8 +81,10 @@ int main() {
   std::cout << "String after concatenation: " << newString.c_str() << std::endl;
   // end Clem
 
+
+
   ////LISA
-  string str_H;
+  string str_H ;
   str_H.afficher();
   std::cout << " " << std::endl;
 
@@ -116,18 +118,15 @@ int main() {
   std::cout << "Test égalité : " ; str_e.afficher();
   std::cout << " " << std::endl;
 
-  /*
   //test operator+(const string&, const string&)
   std::cout << "Test de l'operator+(const string&) : " << std::endl;
-  string str_T, str_s;
+  string str_T, str_s,str_z;
   str_T="Testing ";
   str_s="string";
   std::cout << "Test de l'addition de deux strings : " ; (str_T+str_s).afficher();
-  std::cout << "Test de l'addition d'une chaîne de caractères et d'un string : " ; (str_T+"string").afficher();
   string str_c ("A character sequence");
   std::cout << "Transformation d'une séquence de caractères en string : " ; str_c.afficher() ;
   std::cout << " " << std::endl;
-  */
 
   str.~string();
 

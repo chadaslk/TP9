@@ -34,8 +34,8 @@ class string{
     int get_allocated_memory() const; //Accesor for allocated_memory
 
     //Operators :
-    //string& operator=(const char* s); //Operator=
-    //string operator+(const string&); //Operator+
+    string& operator=(const char* s); //Operator=
+    string operator+(const string&); //Operator+
 
 
   protected:
