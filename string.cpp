@@ -162,52 +162,36 @@ void string::get_str(){
 
 
 // Operator=  (Clem)
-void string::operator=(const string& str){
+string& string::operator=(const string& str){
   	int length = str.length();
     if(length > size_max){
       std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
     }
     // si le string que l'on attribue est de plus grande taille que celui initial
     if(taille_<length +1){
-    //  reserve(length+1);                        //////////////// A decommenter quand reserve(size_t) sera crée
+      reserve(length+1);
     }
     for (int i=0; i<length+1; i++){
       this->str_[i] = str.str_[i];
     }
+		return *this;
 }
 
 // Operator+ (Clem)
-string string::operator+(const string& str) {
-    string new_string(*this);  // Copier la chaîne actuelle
-    // Copier les caractères de str à la fin de new_string
-    for (int i = 0; i < str.taille_; ++i) {
-        new_string.str_[new_string.taille_ + i] = str.str_[i];
-    }
-    // Mettre à jour la taille de new_string
-    new_string.taille_ += str.taille_;
-    if(new_string.taille_ > size_max){
-      std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
-    }
-    return new_string;
+string string::operator+(const char str){
+	string new_string;
+	int new_size = this->length() + 1;
+	if(new_size > size_max){
+		std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
+	}
+	new_string.reserve(new_size+1);
+	for (int i=0; i<new_size-1; i++){
+		new_string.str_[i] = str_[i];
+	}
+	new_string.str_[new_size-1] = str;
+	new_string.str_[new_size] = '\0';
+	return new_string;
 }
-
-/// OU PEUT-ETRE   (Clem)
-/*
-string string::operator+(const string& str){
-  string new_string;
-  int new_size = this->length() + 1;
-  if(new_size > size_max){
-    std::cout<<("La taille a dépassé SIZE_MAX ! Il faut construire un string plus petit.");
-  }
-  //new_string.reserve(new_size+1);                  //////////////// A decommenter quand reserve(size_t) sera crée
-  for (int i=0; i<new_size-1; i++){
-    new_string.str_[i] = str_[i];
-  }
-  new_string.str_[new_size] = str;
-  new_string.str_[new_size+1] = '\0';
-  return new_string;
-}
-*/
 
 /////PARTIE LISA
 

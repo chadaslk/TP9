@@ -38,7 +38,47 @@ int main() {
   string string_test = string(mot_test);
   std::cout<<"le constructeur à partir d'un c-string est crée"<<std::endl;
   std::cout<<"la fonction length renvoie pour string_test : "<<string_test.length()<<std::endl;
-  std::cout<<string::size_max<<std::endl;
+  std::cout<<"la taille max pour un string est : "<<string::size_max<<std::endl;
+
+  //// test de la fonction resize
+  //string myString("Hello");
+  std::cout << "Original String: " << string_test.c_str() << std::endl;
+  // Resize with larger size and character 'A'
+  string_test.resize(10, 'A');
+  std::cout << "Resized String: " << string_test.c_str() << std::endl;
+  // Resize with smaller size
+  string_test.resize(3, 'B');
+  std::cout << "Resized String: " << string_test.c_str() << std::endl;
+
+  //// test de l'opérateur=
+  char firstword[100];
+  char secondword[100];
+  std::cout<<"Enter a first word with size<99"<<std::endl;
+  std::cin>>firstword;
+  string firstString = string(firstword);
+  std::cout<<"Enter a second word with size<99"<<std::endl;
+  std::cin>>secondword;
+  string secondString = string(secondword);
+
+  std::cout << "Before Assignment:" << std::endl;
+  std::cout << "First String: " << firstString.c_str() << std::endl;
+  std::cout << "Second String: " << secondString.c_str() << std::endl;
+  // Assign the content of the second string to the first one
+  firstString = secondString;
+  std::cout << "\nAfter Assignment:" << std::endl;
+  std::cout << "First String: " << firstString.c_str() << std::endl;
+  std::cout << "Second String: " << secondString.c_str() << std::endl;
+
+  //// test de l'opérateur+
+  char mon_mot[100];
+  std::cout<<"Enter a word with size<99"<<std::endl;
+  std::cin>>mon_mot;
+  string mon_string = string(mon_mot);
+  std::cout << "Original String: " << mon_string.c_str() << std::endl;
+  // Concatenate the string with a character
+  char additionalChar = '!';
+  string newString = mon_string + additionalChar;
+  std::cout << "String after concatenation: " << newString.c_str() << std::endl;
   // end Clem
 
   ////LISA
@@ -76,6 +116,7 @@ int main() {
   std::cout << "Test égalité : " ; str_e.afficher();
   std::cout << " " << std::endl;
 
+  /*
   //test operator+(const string&, const string&)
   std::cout << "Test de l'operator+(const string&) : " << std::endl;
   string str_T, str_s;
@@ -86,6 +127,7 @@ int main() {
   string str_c ("A character sequence");
   std::cout << "Transformation d'une séquence de caractères en string : " ; str_c.afficher() ;
   std::cout << " " << std::endl;
+  */
 
   str.~string();
 

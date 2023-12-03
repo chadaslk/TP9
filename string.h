@@ -16,9 +16,8 @@ class string{
     int max_size() const;   // (Clem)
     void resize(int new_size, char char_);   // (Clem)
 
-
-    void operator=(const string& str);   // (Clem)
-    string operator+(const string& str);  // (Clem)
+    string& operator=(const string& str);   // (Clem)
+    string operator+(const char str);   // (Clem)
     string& operator=(char c); //chada
     string operator+(const char* c); // chada
 
