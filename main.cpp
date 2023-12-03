@@ -2,16 +2,34 @@
 #include <iostream>
 
 int main() {
+
+  // TEST DU CONSTRUCTEUR PAR DEFAUT
   string s;
-  s.get_str();
+  std::cout<<"Notre default string est : "<< s.c_str() << std::endl;
+
   //s.clear();
   //s.get_str();
   //s = 'b';
-  //s.get_str();
-  //string s1 = s + 'y';
-  //std::cout << s1.c_str();
-  //string s1(s);
-  //s1.get_str();
+  // TEST DU COPY CONSTRUCTOR
+  char * c = new char[2];
+  string s3(c);
+  string s1(s);
+  std::cout<<"Le résultat du copy constructor est : "<< s1.c_str() << std::endl;
+  //s1.c_str();
+  // TEST DE LA FONCTION SIZE()
+  std::cout<<"La taille de s1 est : "<< s1.size() << std::endl;
+  // TEST DE L'OPERATEUR = (char)
+  s = 'b';
+  std::cout<<"La nouvelle valeur de s est : "<< s.c_str() << std::endl;
+  // TEST DE CLEAR()
+  s.clear();
+  std::cout<<"La nouvelle valeur de s est : "<< s.c_str() << std::endl;
+  // TEST DE L'OPERATEUR +
+
+  c[0] = ' ';
+  c[1] = '!';
+  string s2 = s1 + c;
+  std::cout<<"La nouvelle valeur de s1 est : "<< s2.c_str() << std::endl;
 
   // Clem :
   char mot_test[100];

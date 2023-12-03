@@ -19,8 +19,8 @@ class string{
 
     void operator=(const string& str);   // (Clem)
     string operator+(const string& str);  // (Clem)
-    string& operator=(char c);
-    //string& operator+(const string& s, const char* c);
+    string& operator=(char c); //chada
+    string operator+(const char* c); // chada
 
     //LISA
     //Constructor et Destructor :
@@ -35,8 +35,8 @@ class string{
     int get_allocated_memory() const; //Accesor for allocated_memory
 
     //Operators :
-    string& operator=(const char* s); //Operator=
-    string operator+(const string&); //Operator+
+    //string& operator=(const char* s); //Operator=
+    //string operator+(const string&); //Operator+
 
 
   protected:

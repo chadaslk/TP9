@@ -13,12 +13,20 @@ string::string(){
   for(int i=0; i < 11 ; i++){
     str_[i] = def_str[i];
   }
+  str_[11] = '/';
+  str_[12] = '0';
 }
+
+/*string::string(){
+  taille_ = 0;
+  str_ = nullptr;
+
+}*/
 
 //copy constructor
 string::string(const string& s){
   taille_ = s.taille_ ;
-  str_ = new char[taille_];
+  str_ = new char[taille_+2]; // pour inclure '/0'
   for(int i = 0; i<= s.taille_ + 2 ; i++){
     str_[i] = s.str_[i];
   }
@@ -48,11 +56,7 @@ string::string(char* str) {
 // Returns a pointer to an array that contains a null-terminated sequence of
 // characters (i.e., a C-string) representing the current value of the string object.
 char* string::c_str(){
-  char* end_of_string = new char [2];
-  end_of_string [0] = '/';
-  end_of_string [1] = '0';
-  string cstr = str + end_of_string;
-  return cstr_;
+  return str_;
 }
 
 
@@ -117,22 +121,37 @@ string& string::operator=(char c){
 }
 
 //surcharge de l'opérateur
-//string& string::operator+(const string& s, const char* c){
-  //string new_str ;
-  //t = s.taille_ + c.size();
-  //char* n_str = new char [t];
-  //new_str.taille_ = s.taille_ + 1 ;
+/*string string::operator+(const string& s, const char* c){
+  t = s.taille_ + c.size(); // taille_ du nouveau string
+  char* n_str = new char [t];
+  new_str.taille_ = s.taille_ + 1 ;
   // utilisation de l'opérateur operator = (const string&) peut-être
-  //for (int i = 0 , i < s.taille_ , i++){
-    //n_str[i] = s.str_[i];
-  //}
-  //for (int i = s.taille_ , i < t , i++){
-    //n_str[i] = c[i];
-  //}
-  //new_str.str_[new_str.taille_ - 1] = c;
-  //string new_string(n_str, t);
-  //return (s.str_ + c);
-//}
+  for (int i = 0 , i < s.taille_ , i++){
+    n_str[i] = s.str_[i];
+  }
+  for (int i = s.taille_ , i < t , i++){
+    n_str[i] = c[i];
+  }
+  string new_string(n_str);
+  return new_string;
+}
+*/
+string string::operator+(const char* c){
+  int t = taille_ + sizeof(c) ; // taille_ du nouveau string
+  char* n_str = new char [t];
+  for (int i = 0  ;i < taille_ ; i++){
+    n_str[i] = str_[i];
+  }
+  for (int i = taille_ ; i < t-2 ; i++){
+    n_str[i] = c[i-taille_];
+  }
+  string new_string(n_str);
+  return new_string.str_;
+}
+
+
+
+
 
 void string::get_str(){
   for(int i = 0 ; i<taille_ ; i++){
@@ -242,7 +261,7 @@ void string::reserve(int new_capacity) {
 
 
 //Operator =
-string& string::operator=(const char* s){
+/*string& string::operator=(const char* s){
   //Affecte une chaine de caractères à l'objet
   if (str_){
     delete[] str_ ; //Liberer la mémoire déjà existante
@@ -254,11 +273,11 @@ string& string::operator=(const char* s){
     str_[i]=s[i];
   }
   return *this;
-}
+}*/
 
 
 //Operator +
-string string::operator+(const string& str){
+/*string string::operator+(const string& str){
   //Concaténer les chaînes
   string resultat;
   //Allouer une nouvelle mémoire avec la somme des tailles
@@ -281,7 +300,7 @@ string string::operator+(const string& str){
   //Ajout du caractère nul à la fin
   resultat.str_[resultat.taille_]='\0';
   return resultat;
-}
+}*/
 
 
 //Constructor string(const char*)
